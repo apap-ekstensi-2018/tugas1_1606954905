@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+ 
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+ 
+</head>
+<body>
+ <div th:replace="fragments/fragment :: header"></div>   
+  
+ <div class="row">
+ 	<div class="col-md-12">
+ 		<h3>Presentase Kelulusan </h3>
+ 	</div>
+ </div>  
+ <div class="row">
+ <div class="col-md-4">
+ 	<dl >
+        <dt><span >Tahun</span></dt>
+        <dd>
+            <span th:text="${tahunkelulusan}"></span>
+        </dd>
+        <dt><span >Program Studi</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.programStudiModel.nama_prodi}">nama prodi</span>
+        </dd>
+         <dt><span >Fakultas</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.programStudiModel.fakultasModel.nama_fakultas}">nama fakultas</span>
+        </dd>
+        <dt><span >Universitas</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.programStudiModel.fakultasModel.universitasModel.nama_univ}">nama universitas</span>
+        </dd>
+    </dl>
+ </div>
+  <div class="col-md-4">
+  <dl >
+        <dt><h3 th:text="${mahasiswa.percentage + '%'}">lulusan</h3></dt>
+        <dd>
+            
+        </dd>
+        <dt><span th:text="${mahasiswa.total_lulus + ' dari ' + mahasiswa.total_mahasiswa + ' Mahasiswa telah lulus'}">total lulusan</span></dt>
+        <dd>
+            
+        </dd>
+       
+    </dl>
+  </div>
+ </div>
+          
+    
+  
+ <div th:replace="fragments/fragment :: footer"></div>
+ 
+    
+</body>
+</html>

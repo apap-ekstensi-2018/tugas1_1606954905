@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+ 
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+ <style>
+ dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  max-width: 500px;
+  margin: 1em;
+  line-height: 1.4;
+}
+dt {
+  grid-column: 1;
+  font-weight: bold;
+  padding-right: 10px;
+}
+dd {
+   grid-column: 2;
+ }
+ </style>
+</head>
+<body>
+ <div th:replace="fragments/fragment :: header"></div>   
+  
+ <div>
+ <div class="row">
+ 	<div class="col-md-12">
+ 		<h3>Lihat Data Mahasiswa - <span th:text="${mahasiswa.npm}">NPM Mahasiswa</span></h3>
+ 	</div>
+ </div>  
+ 	<dl >
+        <dt><span >NPM</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.npm}">NPM Mahasiswa</span>
+        </dd>
+        <dt><span >Nama</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.nama}">Nama Mahasiswa</span>
+        </dd>
+         <dt><span >Tempat/Tanggal Lahir</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.tempat_lahir + ' ' + #dates.format(mahasiswa.tanggal_lahir, 'dd-MMM-yyyy')}">tempat/tanggal lahir</span>
+        </dd>
+        <dt><span >Program Studi</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.programStudiModel.nama_prodi}">nama prodi</span>
+        </dd>
+         <dt><span >Fakultas</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.programStudiModel.fakultasModel.nama_fakultas}">nama fakultas</span>
+        </dd>
+        <dt><span >Universitas</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.programStudiModel.fakultasModel.universitasModel.nama_univ}">nama universitas</span>
+        </dd>
+        <dt><span >Jenis Kelamin</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.jenis_kelamin}">Jenis Kelamain</span>
+        </dd>
+        <dt><span >Agama</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.agama}">Agama</span>
+        </dd>
+        <dt><span >Golongan Darah</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.golongan_darah}">Golongan darah</span>
+        </dd>
+         <dt><span >Tahun Masuk</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.tahun_masuk}">Tahun Masuk</span>
+        </dd>
+        <dt><span >Jalur Masuk</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.jalur_masuk}">Jalur Masuk</span>
+        </dd>
+        <dt><span >Status</span></dt>
+        <dd>
+            <span th:text="${mahasiswa.status}">Status</span>
+        </dd>
+    </dl>
+ </div>
+          
+    
+  
+ <div th:replace="fragments/fragment :: footer"></div>
+ 
+    
+</body>
+</html>

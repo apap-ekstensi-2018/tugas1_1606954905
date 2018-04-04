@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+ 
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/DataTable/datatables.min.css" />
+ 
+ <script type="text/javascript"  src="/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/DataTable/datatables.min.js"></script> 
+ 
+</head>
+<body>
+ <div th:replace="fragments/fragment :: header"></div>   
+  
+ 
+ <div class="row">
+ 	<div class="col-md-12">
+ 		<h2>Cari Mahasiswa</h2>
+ 	</div>
+ </div>       
+ <div class="row" style="padding-left:30px;">
+ 	<div class="col-md-6">
+ 		 <form action="/mahasiswa/cari" method="get" >
+		 
+		<div class="row" th:if="${listuniv!=null}">
+			<label class="label-control" for="univ">Universitas</label> 
+			<select class="form-control" name="univ" >
+				 <option  th:each="univopt,iterationStatus: ${listuniv}" th:value="${univopt.id}"  th:selected="${univopt.isSelected(univ)}" th:text="${univopt.nama_univ}"></option>
+			</select>
+		</div>
+		<div class="row" th:if="${listfakultas!=null}">
+			<label class="label-control" for="fakultas">Fakultas</label> 
+			<select class="form-control" name="fakultas" >
+				 <option  th:each="fakultasopt,iterationStatus: ${listfakultas}" th:value="${fakultasopt.id}"  th:selected="${fakultasopt.isSelected(fakultas)}" th:text="${fakultasopt.nama_fakultas}"></option>
+			</select>
+		</div>
+		<div class="row" th:if="${listProdi!=null}">
+			<label class="label-control" for="prodi">Program Studi</label> 
+			<select class="form-control" name="prodi" >
+				 <option  th:each="prodi,iterationStatus: ${listProdi}" th:value="${prodi.id}" th:text="${prodi.nama_prodi}"></option>
+			</select>
+		</div>
+		<div th:if="${listmhs==null}">
+		<input type="submit" value="Cari" />
+		</div>
+		</form>
+ 	</div>
+ </div>       
+ 
+ <div class="row" th:if="${listmhs!=null}">
+ 	<div class="col-md-12">
+ 		<table id="tblStudent" class="display" style="width:100%">
+    		<thead>
+    			<tr>
+    				<th>No</th>
+    				<th>NPM</th>
+    				<th>Nama</th>
+    				<th>Tahun Masuk</th>
+    				<th>Jalur Masuk</th>
+    				<th>Detail Mahasiswa</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<tr th:each="student,iterationStatus: ${listmhs}" >
+    				<td th:text="${iterationStatus.count}">No</td> 
+    				
+    				<td th:text="${student.npm}">Npm</td> 
+    				
+    				
+    				<td th:text="${student.nama}">Name</td> 
+    				
+    				<td th:text="${student.tahun_masuk}">Npm</td> 
+    				
+    				<td  th:text="${student.jalur_masuk}">jalur !</td> 
+    				
+    				<td>
+    						<a th:href="'/mahasiswa?npm=' + ${student.npm}" class="btn btn-original"><span class="glyphicon glyphicon-cross"></span> Lihat Detail</a>
+	       
+    				</td> 
+    				 
+    			</tr>
+    		</tbody>
+    </table>
+ 	</div>
+ </div>       
+      
+    
+  
+ <div th:replace="fragments/fragment :: footer"></div>
+ <script>
+    $(document).ready( function () {
+        $('#tblStudent').DataTable();
+    } );
+    </script>
+    
+</body>
+</html>

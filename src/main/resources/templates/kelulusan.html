@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+ 
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+ 
+</head>
+<body>
+ <div th:replace="fragments/fragment :: header"></div>   
+  
+ 
+ <div class="row">
+ 	<div class="col-md-12">
+ 		<h2>Presentase Kelulusan</h2>
+ 	</div>
+ </div>       
+ <div class="row" style="padding-left:30px;">
+ 	<div class="col-md-6">
+ 		 <form action="/kelulusan/result" method="get">
+		<div class="row">
+			<label class="label-control" for="tahun">Tahun</label> 
+			<input class="form-control" type="text" name="thn" placeholder="" />
+		</div>
+		<div class="row">
+			<label class="label-control" for="prodi">Id Program Studi</label> 
+			<select class="form-control" name="prodi" >
+				 <option  th:each="prodi,iterationStatus: ${listProdi}" th:value="${prodi.id}" th:text="${prodi.nama_prodi}"></option>
+			</select>
+		</div>
+		<div>
+		<input type="submit" value="Lihat" />
+		</div>
+		</form>
+ 	</div>
+ </div>       
+      
+    
+  
+ <div th:replace="fragments/fragment :: footer"></div>
+ 
+    
+</body>
+</html>
